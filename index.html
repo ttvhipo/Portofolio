@@ -20,29 +20,154 @@
         .gothic-title {
             font-family: 'BlackLetter', serif;
         }
-        
-        .project-card {
-            transition: transform 0.3s ease;
+
+        /* Glitch effect styles */
+        .glitch {
+            position: relative;
+            animation: glitch 5s infinite;
         }
-        
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111111;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ff00;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px,0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px,0) skew(0deg);
+            }
+            62% {
+                transform: translate(0,0) skew(5deg);
+            }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(31px, 9999px, 94px, 0);
+            }
+            20% {
+                clip: rect(62px, 9999px, 64px, 0);
+            }
+            40% {
+                clip: rect(71px, 9999px, 85px, 0);
+            }
+            60% {
+                clip: rect(15px, 9999px, 79px, 0);
+            }
+            80% {
+                clip: rect(52px, 9999px, 33px, 0);
+            }
+            100% {
+                clip: rect(94px, 9999px, 99px, 0);
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(65px, 9999px, 119px, 0);
+            }
+            20% {
+                clip: rect(76px, 9999px, 86px, 0);
+            }
+            40% {
+                clip: rect(82px, 9999px, 32px, 0);
+            }
+            60% {
+                clip: rect(48px, 9999px, 78px, 0);
+            }
+            80% {
+                clip: rect(15px, 9999px, 66px, 0);
+            }
+            100% {
+                clip: rect(91px, 9999px, 11px, 0);
+            }
+        }
+
+        /* Scanlines effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 1000;
+        }
+
+        /* Hover effect for project cards */
+        .project-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff0000, #00ff00, transparent);
+            transition: 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
         .project-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(255,0,0,0.2),
+                       0 0 30px rgba(0,255,0,0.1);
         }
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Scanlines overlay -->
+    <div class="scanlines"></div>
+
     <!-- Header -->
-    <header class="py-16 text-center">
-        <h1 class="gothic-title text-6xl mb-4 text-gray-200">Portfolio</h1>
+    <header class="py-16 text-center relative z-10">
+        <h1 class="gothic-title text-6xl mb-4 text-gray-200 glitch" data-text="Portfolio">Portfolio</h1>
         <p class="text-xl text-gray-400">Developer & Creator</p>
     </header>
 
     <!-- Projects Grid -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-8 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- SL-scrapper Project -->
             <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
-                <h3 class="gothic-title text-2xl mb-4 text-gray-200">SL-scrapper</h3>
+                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="SL-scrapper">SL-scrapper</h3>
                 <p class="text-gray-400 mb-4">
                     Data scraping tool for Stockholm public transport information. Built for efficient transit data collection and analysis.
                 </p>
@@ -56,7 +181,7 @@
 
             <!-- HalsoKollen Project -->
             <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
-                <h3 class="gothic-title text-2xl mb-4 text-gray-200">HalsoKollen</h3>
+                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="HalsoKollen">HalsoKollen</h3>
                 <p class="text-gray-400 mb-4">
                     Health monitoring and tracking system. Designed to help users maintain and track their health metrics.
                 </p>
@@ -70,7 +195,7 @@
 
             <!-- MunirFork Project -->
             <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
-                <h3 class="gothic-title text-2xl mb-4 text-gray-200">MunirFork</h3>
+                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="MunirFork">MunirFork</h3>
                 <p class="text-gray-400 mb-4">
                     A forked project with custom modifications and improvements. Extended functionality for specific use cases.
                 </p>
@@ -85,8 +210,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-8 text-gray-500">
-        <p>© 2025 • Built with Gothic Elegance</p>
+    <footer class="text-center py-8 text-gray-500 relative z-10">
+        <p class="glitch" data-text="© 2025 • Built with Gothic Elegance">© 2025 • Built with Gothic Elegance</p>
     </footer>
 </body>
 </html>
