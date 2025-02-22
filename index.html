@@ -6,6 +6,19 @@
     <title>aachee16 Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="favicon/favicon.png" type="image/png">
+    <script>
+        const title = "aachee16 portfolio - ";
+        let scrollTitle = title;
+
+        function updateTitle() {
+            // Scroll the title
+            document.title = scrollTitle;
+            scrollTitle = scrollTitle.slice(1) + scrollTitle[0]; // Rotate the title
+        }
+
+        setInterval(updateTitle, 300); // Change title every 300 milliseconds
+    </script>
+    
     <style>
         @font-face {
             font-family: 'BlackLetter';
