@@ -19,6 +19,33 @@
         
         .gothic-title {
             font-family: 'BlackLetter', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Project card styles with background */
+        .project-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17, 17, 17, 0.85);
+            z-index: 1;
+        }
+
+        .project-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         /* Glitch effect styles */
@@ -35,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #111111;
+            background: transparent;
         }
 
         .glitch::before {
@@ -123,13 +150,7 @@
             z-index: 1000;
         }
 
-        /* Hover effect for project cards */
-        .project-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
+        /* Project card effects */
         .project-card::before {
             content: '';
             position: absolute;
@@ -139,6 +160,7 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, #ff0000, #00ff00, transparent);
             transition: 0.5s;
+            z-index: 3;
         }
 
         .project-card:hover::before {
@@ -150,11 +172,23 @@
             box-shadow: 0 0 15px rgba(255,0,0,0.2),
                        0 0 30px rgba(0,255,0,0.1);
         }
+
+        .project-card:hover::after {
+            background: rgba(17, 17, 17, 0.75);
+        }
+
+        /* Enhanced text shadow for better readability */
+        .project-card h3,
+        .project-card p,
+        .project-card span,
+        .project-card a {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
         
         h2 {
-    text-align: center;
-}
-
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -171,7 +205,7 @@
     <main class="container mx-auto px-4 py-8 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- SL-scrapper Project -->
-            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
+            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700" style="background-image: url('/api/placeholder/800/600');">
                 <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="SL-scrapper">SL-scrapper</h3>
                 <p class="text-gray-400 mb-4">
                     Data scraping tool for Stockholm public transport information. Built for efficient transit data collection and analysis.
@@ -185,7 +219,7 @@
             </div>
 
             <!-- HalsoKollen Project -->
-            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
+            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700" style="background-image: https://domainnamewire.com/wp-content/tucows-logo-1.jpg">
                 <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="HalsoKollen">HalsoKollen</h3>
                 <p class="text-gray-400 mb-4">
                     Health monitoring and tracking system. Designed to help users maintain and track their health metrics.
@@ -197,10 +231,9 @@
                     </a>
                 </div>
             </div>
-            
 
             <!-- MunirFork Project -->
-            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
+            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700" style="background-image: url('/api/placeholder/800/600');">
                 <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="MunirFork">MunirFork</h3>
                 <p class="text-gray-400 mb-4">
                     A forked project with custom modifications and improvements. Extended functionality for specific use cases.
@@ -212,10 +245,12 @@
                     </a>
                 </div>
             </div>
-            <h2 class="text-xl text-gray-400">Miscellaneous</h2>
+
+            <h2 class="text-xl text-gray-400 col-span-full">Miscellaneous</h2>
             
-                        <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
-                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="MunirFork">Car cluster to Simrig</h3>
+            <!-- Car cluster Project -->
+            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700" style="background-image: url('/api/placeholder/800/600');">
+                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="Car cluster to Simrig">Car cluster to Simrig</h3>
                 <p class="text-gray-400 mb-4">
                     Integrating a cluster from a Audi A4 to pc games
                 </p>
@@ -227,8 +262,9 @@
                 </div>
             </div>
             
-            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700">
-                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="MunirFork">Music Production</h3>
+            <!-- Music Production Project -->
+            <div class="project-card bg-gray-900 rounded-lg p-6 border border-gray-700" style="background-image: url('/api/placeholder/800/600');">
+                <h3 class="gothic-title text-2xl mb-4 text-gray-200 glitch" data-text="Music Production">Music Production</h3>
                 <p class="text-gray-400 mb-4">
                     Check out my music work!
                 </p>
